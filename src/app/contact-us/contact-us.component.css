@@ -1,0 +1,9 @@
+.maps-container {
+  text-align: center;
+
+  border-width: 1px;
+  border-color: black;
+  width: 800px;
+  margin-left: 600px;
+  height: 500px;
+}

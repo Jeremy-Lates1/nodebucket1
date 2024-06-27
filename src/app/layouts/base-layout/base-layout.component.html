@@ -1,0 +1,43 @@
+<!--
+<app-nav></app-nav> 
+-->
+
+<!--
+<main>
+
+  <router-outlet></router-outlet>
+</main>
+-->
+
+<!--
+
+<app-footer></app-footer> 
+
+-->
+
+<mat-toolbar color="primary" style="background-color: #223164">
+  <mat-toolbar-row>
+    <div style="width: 80%">
+      <div fxLayout="row wrap" fxLayoutAlign="end start">
+        <button mat-button routerLink="/tasks">Tasks</button>
+        <button mat-button routerLink="/contact">Contact</button>
+        <button mat-button routerLink="/about">About</button>
+        <button mat-button (click)="signout()">Sign Out</button>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<br />
+
+<div fxLayout="row wrap">
+  <div fxFlex>
+    <mat-card class="main-container">
+      <mat-card-title class="center-card">Nodebucket</mat-card-title>
+      <br /><br />
+      <mat-card-content>
+        <router-outlet></router-outlet>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

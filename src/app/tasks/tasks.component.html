@@ -1,0 +1,94 @@
+<!--
+<div class="container-fluid pt-2 full-height" style="height: 100vh">
+  <h1 class="text-center">My Tasks</h1>
+</div>
+-->
+<div class="tasks-container">
+  <h1>My Tasks</h1>
+
+  <!-- tasks form-->
+  <form
+    #taskForm="ngForm"
+    (ngSubmit)="createTask(taskForm); taskForm.reset()"
+    class="tasks-form"
+  >
+    <input
+      type="text"
+      name="task"
+      ngModel
+      required
+      placeholder="Enter a new task"
+    />
+    <input type="submit" [disabled]="!taskForm.valid" value="Add Task" />
+  </form>
+
+  <!-- Tasks Container -->
+  <div class="tasks-columns">
+    <!-- Task todo Column-->
+    <div
+      class="container tasks-columns"
+      style="margin-left: 5px"
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="[doneList]"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div>
+        <h2>To Do</h2>
+
+        <div class="tasks-box" style="width: 300px">
+          <div *ngIf="todo.length === 0 || !todo" class="no-tasks">
+            No Tasks to do yet!
+          </div>
+
+          <!--Tasks card-->
+          <div *ngFor="let item of todo" cdkDrag class="tasks-card">
+            <div>
+              {{ item.text }}
+            </div>
+
+            <div>
+              <button (click)="deleteTask(item._id)" class="btn">
+                <span class="material-icons">delete</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task Done Column-->
+      <div
+        class="container tasks-columns"
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[todoList]"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div>
+          <h2>Done</h2>
+
+          <div class="tasks-box" style="width: 300px">
+            <div *ngIf="done.length === 0 || !done" class="no-tasks">
+              No Tasks done yet!
+            </div>
+
+            <!--Tasks card-->
+            <div *ngFor="let item of done" cdkDrag class="tasks-card">
+              <div>
+                {{ item.text }}
+              </div>
+
+              <div>
+                <button (click)="deleteTask(item._id)" class="btn">
+                  <span class="material-icons">delete</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
